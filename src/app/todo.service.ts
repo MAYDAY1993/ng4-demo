@@ -21,31 +21,51 @@ export class TodoService {
         return this.todos.filter(todo => todo.id === id).pop();
     }
 
-    addItem(todo: Todo) {
+    addItem(todo: Todo): TodoService {
+        console.log(todo.title);
+        if (!todo.title) {
+            return;
+        }
         if (!todo.id) {
             todo.id = ++this.currentId;
         }
         this.todos.push(todo);
+        console.log(this.todos.length);
         return this;
     }
 
-    deleteItem(id: number) {
-        let currentItem = this.getItemById(id);
+    deleteItem(id: number): TodoService {
         this.todos = this.todos.filter(todo => todo.id !== id);
         return this;
     }
 
-    editItem(id: number, values: Object = {}): Todo {
-        let todo = this.getItemById(id);
+    editItem(todo): Todo {
+        todo.preTitle = todo.title;
+
+        console.log(todo);
         if (!todo) {
             return null;
         }
-        Object.assign(todo, values);
+        todo.editing = true;
+        return todo;
+    }
+
+    commitItem(todo, value: Object = {}): Todo {
+        todo.editing = false;
+        Object.assign(todo, value);
+        console.log(todo);
+        return todo;
+    }
+
+    cancelItem(todo): Todo {
+        todo.editing = false;
+        todo.title = todo.preTitle;
+        console.log(todo);
         return todo;
     }
 
     toggleItemState(todo: Todo) {
-        let afterChangeTodo = this.editItem(todo.id, {
+        let afterChangeTodo = Object.assign(todo, {
             checked: !todo.checked
         });
         return afterChangeTodo;

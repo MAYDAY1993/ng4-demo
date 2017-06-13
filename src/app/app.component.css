@@ -1,0 +1,28 @@
+/*body {
+    background: #000;
+}*/
+
+.checked {
+    text-decoration: line-through;
+}
+
+
+/*li {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px dashed #fff;
+}*/
+
+.edit {
+    position: relative;
+}
+
+.edit-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    font-size: 18px;
+}

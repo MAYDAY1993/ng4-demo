@@ -11,15 +11,16 @@ import { TodoService } from './todo.service';
 })
 
 export class AppComponent {
+
     title = 'todolist';
     initTodo: Todo = new Todo();
-
 
     constructor(
         private todoService: TodoService,
     ) {}
 
     addItem() {
+        console.log(this.initTodo);
         this.todoService.addItem(this.initTodo);
         this.initTodo = new Todo();
     }
@@ -32,7 +33,23 @@ export class AppComponent {
         this.todoService.toggleItemState(todo);
     }
 
-    getTodos() {
+    get todos() {
         return this.todoService.getTodos();
+    }
+
+    editItem(todo) {
+        if (todo.checked) {
+            return;
+        }
+        this.todoService.editItem(todo);
+    }
+
+    commitItem(todo) {
+        console.log(todo.title);
+        this.todoService.commitItem(todo);
+    }
+
+    cancelItem(todo) {
+        this.todoService.cancelItem(todo);
     }
 }

@@ -2,20 +2,30 @@
     <h1>
         {{title}}
     </h1>
-    <input ([ngModel])="initTodo.name" placeholder="what needed to bo done" (keyup.enter)="addItem()">
-    <ul *ngIf="todos.length>0">
+    <div>
+        <input [(ngModel)]="initTodo.title" autofocus="" placeholder="add..." (keyup.enter)="addItem()">
+        <button (click)="addItem()">add</button>
+    </div>
+    <ul>
+        <li *ngFor="let item of test" [class.checked]="todo.checked">
+            {{item}}
+        </li>
+    </ul>
+    <ul>
         <li *ngFor="let todo of todos">
             <input type="checkbox" (click)="toggleItemState(todo)">
-            <span>{{todo.name}}</span>
-            <div>
-                <span (click)="">edit</span>
+            <div class="edit">
+                <span [class.checked]="todo.checked" (dblclick)="editItem(todo)">{{todo.title}}</span>
+                <input *ngIf="todo.editing" class="edit-input" autofocus="autofocus" [(ngModel)]="todo.title" type="text" (keyup.enter)="commitItem(todo)">
+            </div>
+            <div *ngIf="!todo.editing">
+                <span (click)="editItem(todo)">edit</span>
                 <span (click)="deleteItem(todo)">delete</span>
             </div>
-            <div>
-                <span>commit</span>
-                <span>cancel</span>
+            <div *ngIf="todo.editing">
+                <span (click)="commitItem(todo)">commit</span>
+                <span (click)="cancelItem(todo)">cancel</span>
             </div>
         </li>
     </ul>
-    <div *ngIf="todos.length>0">count:{{todos.length}}</div>
 </div>
