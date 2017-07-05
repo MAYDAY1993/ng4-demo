@@ -1,28 +1,29 @@
-# Todo
+# Todo-List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.1.
 
-## Development server
+用 Angular4 实现一个小 demo:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* 用 [Angular CLI](https://github.com/angular/angular-cli) v1.1.1 来搭环境；
+* 起服务 默认 4200 端口：
 
-## Code scaffolding
+```
+ng serve
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+```
 
-## Build
+* 主要涉及：列表渲染，数据绑定，事件触发；
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+### 实现功能：
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* 对 todo 增、删、改
+* 罗列当前 todos
+* 使用内存存储数据
+* todo 内容不能为空
+* add 操作支持键盘 enter，按钮 click 2 种操作方式
+* 对 todo 的 complete 操作，edit 操作，删除操作
+* 对 completed 的 todo，无法触发 edit 操作
+* edit 操作支持双击，按钮 2 种操作方式
+* 编辑 todo 时，支持 commit,cancel 操作
+* commit 操作支持键盘 enter，按钮 click 2 种操作方式
+* cancel 操作支持键盘 esc，按钮 click 2 种操作方式
+* 编辑时当前 todo 失焦，触发 cancel 操作
